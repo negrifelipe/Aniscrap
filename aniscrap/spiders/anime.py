@@ -5,6 +5,11 @@ from scrapy.selector import SelectorList
 from aniscrap.items import AnimeItem
 
 class AnimeSpider(scrapy.Spider):
+    """Spider for scraping anime by id from MyAnimeList.
+    
+    This spider parses all anime information from the anime page.
+    However it does not include characters, staff and reviews.
+    """
     name = "anime"
     
     def __init__(self, id: int | None = None, *args, **kwargs):

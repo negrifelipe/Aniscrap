@@ -32,7 +32,15 @@ class AnimeItem(scrapy.Item):
     source: {'name': str, 'url': str } = scrapy.Field()
     genres: [{'name': str, 'url': str }] = scrapy.Field()
 
-
+class SearchAnimeResultItem(scrapy.Item):
+    id: int = scrapy.Field()
+    picture_url: str = scrapy.Field()
+    name: str = scrapy.Field()
+    url: str = scrapy.Field()
+    synopsis: str = scrapy.Field()
+    anime_type: str = scrapy.Field()
+    episodes: int = scrapy.Field()
+    score: float = scrapy.Field()
 
 class SeasonalAnimeItem(scrapy.Item):
     # define the fields for your item here like:
