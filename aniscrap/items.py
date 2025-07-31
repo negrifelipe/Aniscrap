@@ -5,9 +5,38 @@
 
 import scrapy
 
+class AnimeItem(scrapy.Item):
+    id:int = scrapy.Field()
+    picture_url: str = scrapy.Field()
+    names: {
+        'english': str,
+        'japanese': str
+    } = scrapy.Field()
+    synopsis:str = scrapy.Field()
+    statics: {
+        'score': float,
+        'rank': int,
+        'popularity': int,
+        'members': int,
+        'favorites': int
+    } = scrapy.Field()
+    anime_type: {'name': str, 'url': str } = scrapy.Field()
+    episodes: int = scrapy.Field()
+    status: str = scrapy.Field()
+    aired: str = scrapy.Field()
+    premiered: str = scrapy.Field()
+    broadcast: str = scrapy.Field()
+    producers: [{'name': str, 'url': str }] = scrapy.Field()
+    licensors: [{'name': str, 'url': str }] = scrapy.Field()
+    studios: [{'name': str, 'url': str }]  = scrapy.Field()
+    source: {'name': str, 'url': str } = scrapy.Field()
+    genres: [{'name': str, 'url': str }] = scrapy.Field()
+
+
 
 class SeasonalAnimeItem(scrapy.Item):
     # define the fields for your item here like:
+    id = scrapy.Field()
     picture_url = scrapy.Field()
     name = scrapy.Field()
     url = scrapy.Field()

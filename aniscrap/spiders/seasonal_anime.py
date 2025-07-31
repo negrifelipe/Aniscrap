@@ -1,5 +1,5 @@
 import scrapy
-
+from scrapy.http import Response
 from aniscrap.items import SeasonalAnimeItem
 
 class SeasonalAnimeSpider(scrapy.Spider):
@@ -12,7 +12,7 @@ class SeasonalAnimeSpider(scrapy.Spider):
     allowed_domains = ["myanimelist.net"]
     start_urls = ["https://myanimelist.net/anime/season"]
 
-    def parse(self, response):
+    def parse(self, response: Response):
         categories = response.css('div.js-seasonal-anime-list')
 
         for category in categories:
@@ -28,6 +28,7 @@ class SeasonalAnimeSpider(scrapy.Spider):
         item = SeasonalAnimeItem()
         item['name'] = anime.css('h2.h2_anime_title > a::text').get()
         item['url'] = anime.css('h2.h2_anime_title > a::attr(href)').get()
+        item['id'] = int(anime.css('div > div.genres::attr(id)').get())
         item['picture_url'] = anime.css('img::attr(src)').get() or anime.css('img::attr(data-src)').get()
         item['anime_type'] = anime_type
         item['synopsis'] = anime.css('p.preline::text').get()
